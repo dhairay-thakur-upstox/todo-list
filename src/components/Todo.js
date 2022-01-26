@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import axios from "axios";
+
+const baseURL = "http://localhost:8080/todos";
 
 const Todo = ({ id, text }) => {
   const [newText, setNewText] = useState(text);
   const deleteHandler = () => {
-    console.log(id);
+    axios.delete(`${baseURL}?id=${id}`);
   };
-  const editHandler = () => {
-    console.log(newText);
+  const editHandler = (close) => {
+    close();
+    axios.put(baseURL, {
+      id,
+      text: newText,
+    });
   };
   const handleChange = (e) => {
     setNewText(e.target.value);
@@ -20,8 +27,9 @@ const Todo = ({ id, text }) => {
         <i className="fas fa-check"></i>
       </button>
       <Popup
+        closeOnEscape
+        closeOnDocumentClick
         modal
-        nested
         trigger={
           <button className="edit-btn">
             <i className="fas fa-edit"></i>
@@ -29,16 +37,23 @@ const Todo = ({ id, text }) => {
         }
         position="right"
       >
-        <input
-          className="edit-input"
-          type="text"
-          value={newText}
-          onChange={handleChange}
-          placeholder="Edit ToDo"
-        />
-        <button className="complete-btn-edit" onClick={editHandler}>
-          <i className="fas fa-check"></i>
-        </button>
+        {(close) => (
+          <>
+            <input
+              className="edit-input"
+              type="text"
+              value={newText}
+              onChange={handleChange}
+              placeholder="Edit ToDo"
+            />
+            <button
+              className="complete-btn-edit"
+              onClick={() => editHandler(close)}
+            >
+              <i className="fas fa-check"></i>
+            </button>
+          </>
+        )}
       </Popup>
     </div>
   );

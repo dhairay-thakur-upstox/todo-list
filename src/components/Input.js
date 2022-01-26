@@ -1,17 +1,23 @@
 import React from "react";
+import axios from "axios";
+
+const baseURL = "http://localhost:8080/todos";
 
 const Input = ({ setTodo, setTodos, todos, todo }) => {
   const onSubmit = (e) => {
     setTodo(e.target.value);
   };
   const onSubmitTodo = (e) => {
-    e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: todo, isCompleted: false, id: todos.length + 1 },
-    ]);
+    // e.preventDefault();
+    axios.post(baseURL, {
+      id: todo.length + 1,
+      text: todo,
+    });
+    // setTodos([
+    //   ...todos,
+    //   { text: todo, isCompleted: false, id: todos.length + 1 },
+    // ]);
     setTodo("");
-    console.log(todos);
   };
   return (
     <form>
