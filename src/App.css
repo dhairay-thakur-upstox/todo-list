@@ -12,6 +12,9 @@ body {
 header {
   font-size: 2rem;
 }
+h2 {
+  color: #f6d365;
+}
 
 header,
 form {
@@ -48,6 +51,13 @@ form button:hover {
   border-color: #ff6f47;
 }
 
+.edit-input {
+  border-width: 0.3rem;
+  padding: 0.5rem;
+  border-color: #fda085;
+  width: 23.5rem;
+}
+
 .todo-list {
   min-width: 30%;
   list-style: none;
@@ -80,6 +90,16 @@ form button:hover {
   font-size: 1rem;
 }
 .complete-btn {
+  background: rgb(11, 212, 162);
+}
+.complete-btn-edit {
+  background: #ff6f47;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 0.1rem;
   background: rgb(11, 212, 162);
 }
 .todo-item {

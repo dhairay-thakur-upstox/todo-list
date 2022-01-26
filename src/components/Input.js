@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Input = ({ setTodo, setTodos, todos, todo }) => {
   const onSubmit = (e) => {
-    // console.log(e.target.value);
     setTodo(e.target.value);
   };
   const onSubmitTodo = (e) => {
