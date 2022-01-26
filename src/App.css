@@ -46,6 +46,12 @@ form button:hover {
   align-items: center;
 }
 
+.edit-container {
+  align-items: center;
+  justify-content: left;
+  text-align: center;
+}
+
 .todo-input {
   border-width: 1rem;
   border-color: #ff6f47;
@@ -55,7 +61,7 @@ form button:hover {
   border-width: 0.3rem;
   padding: 0.5rem;
   border-color: #fda085;
-  width: 23.5rem;
+  width: 90%;
 }
 
 .todo-list {
@@ -96,9 +102,9 @@ form button:hover {
   background: #ff6f47;
   color: white;
   border: none;
-  padding: 0.75rem;
+  padding: 1.25vh;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.25vh;
   margin-left: 0.1rem;
   background: rgb(11, 212, 162);
 }

@@ -38,7 +38,7 @@ const Todo = ({ id, text }) => {
         position="right"
       >
         {(close) => (
-          <>
+          <div className="edit-container">
             <input
               className="edit-input"
               type="text"
@@ -52,7 +52,7 @@ const Todo = ({ id, text }) => {
             >
               <i className="fas fa-check"></i>
             </button>
-          </>
+          </div>
         )}
       </Popup>
     </div>
