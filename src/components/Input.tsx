@@ -1,22 +1,29 @@
-import React from "react";
+import React, { ChangeEvent, MouseEventHandler } from "react";
 import axios from "axios";
+import Todo from "./Todo";
 
 const baseURL = "http://localhost:8080/todos";
 
-const Input = ({ setTodo, setTodos, todos, todo }) => {
-  const onSubmit = (e) => {
+interface TodoInterface {
+  id: number;
+  text: string;
+}
+type Props = {
+  todo: string;
+  todos: Array<TodoInterface>;
+  setTodo: (val: string) => void;
+};
+type InputEvent = ChangeEvent<HTMLInputElement>;
+
+const Input: React.FC<Props> = ({ setTodo, todo, todos }) => {
+  const onSubmit = (e: InputEvent) => {
     setTodo(e.target.value);
   };
-  const onSubmitTodo = (e) => {
-    // e.preventDefault();
+  const onSubmitTodo = () => {
     axios.post(baseURL, {
-      id: todo.length + 1,
+      id: todos.length + 1,
       text: todo,
     });
-    // setTodos([
-    //   ...todos,
-    //   { text: todo, isCompleted: false, id: todos.length + 1 },
-    // ]);
     setTodo("");
   };
   return (

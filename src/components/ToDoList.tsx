@@ -1,7 +1,15 @@
 import React from "react";
 import Todo from "./Todo";
 
-const ToDoList = ({ todos }) => {
+type Props = {
+  todos: Array<TodoInterface>;
+};
+interface TodoInterface {
+  id: number;
+  text: string;
+}
+
+const ToDoList: React.FC<Props> = ({ todos }) => {
   return (
     <div className="todo-container">
       <ul className="todo-list">

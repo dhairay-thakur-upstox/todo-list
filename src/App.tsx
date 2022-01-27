@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Input from "./components/Input";
 import ToDoList from "./components/ToDoList";
@@ -6,9 +6,14 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8080/todos";
 
-function App() {
-  const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+interface TodoInterface {
+  id: number;
+  text: string;
+}
+
+const App: React.FC = () => {
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Array<TodoInterface>>([]);
   useEffect(() => {
     axios.get(baseURL).then((response) => {
       setTodos(response.data);
@@ -21,10 +26,10 @@ function App() {
       <header>
         <h1>To Do List </h1>
       </header>
-      <Input todos={todos} setTodos={setTodos} setTodo={setTodo} todo={todo} />
-      <ToDoList todos={todos} setTodos={setTodos} />
+      <Input todos={todos} setTodo={setTodo} todo={todo} />
+      <ToDoList todos={todos} />
     </div>
   );
-}
+};
 
 export default App;
