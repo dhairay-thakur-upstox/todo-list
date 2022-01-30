@@ -1,36 +1,26 @@
 import React, { useState, ChangeEvent } from "react";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import axios from "axios";
-
-const baseURL = "http://localhost:8080/todos";
 
 type Props = {
   id: number;
   text: string;
+  deleteHandler: (id: number) => void;
+  editHandler: (id: number, newText: string) => void;
 };
 type InputEvent = ChangeEvent<HTMLInputElement>;
 type CloseFunction = () => void;
 
-const Todo: React.FC<Props> = ({ id, text }) => {
+const Todo: React.FC<Props> = ({ id, text, deleteHandler, editHandler }) => {
   const [newText, setNewText] = useState<string>(text);
-  const deleteHandler = () => {
-    axios.delete(`${baseURL}?id=${id}`);
-  };
-  const editHandler = (close: CloseFunction) => {
-    close();
-    axios.put(baseURL, {
-      id,
-      text: newText,
-    });
-  };
+
   const handleChange = (e: InputEvent) => {
     setNewText(e.target.value);
   };
   return (
     <div className="todo">
       <li className="todo-item">{text}</li>
-      <button className="complete-btn" onClick={deleteHandler}>
+      <button className="complete-btn" onClick={() => deleteHandler(id)}>
         <i className="fas fa-check"></i>
       </button>
       <Popup
@@ -54,7 +44,10 @@ const Todo: React.FC<Props> = ({ id, text }) => {
             />
             <button
               className="complete-btn-edit"
-              onClick={() => editHandler(close)}
+              onClick={() => {
+                editHandler(id, newText);
+                close();
+              }}
             >
               <i className="fas fa-check"></i>
             </button>

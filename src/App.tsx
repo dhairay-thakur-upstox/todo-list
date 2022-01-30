@@ -9,6 +9,8 @@ const baseURL = "http://localhost:8080/todos";
 interface TodoInterface {
   id: number;
   text: string;
+  deleteHandler: (id: number) => void;
+  editHandler: (id: number, newText: string) => void;
 }
 
 const App: React.FC = () => {
@@ -26,9 +28,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetchTodos();
-    return () => {
-      setTodos([]);
-    };
   }, []);
   if (!todos) return null;
 
@@ -38,7 +37,7 @@ const App: React.FC = () => {
         <h1>To Do List </h1>
       </header>
       <Input todos={todos} setTodo={setTodo} todo={todo} />
-      <ToDoList todos={todos} />
+      <ToDoList todos={todos} setTodos={setTodos} />
     </div>
   );
 };
