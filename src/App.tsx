@@ -14,11 +14,22 @@ interface TodoInterface {
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Array<TodoInterface>>([]);
-  useEffect(() => {
-    axios.get(baseURL).then((response) => {
+
+  const fetchTodos = async () => {
+    try {
+      const response = await axios.get(baseURL);
       setTodos(response.data);
-    });
-  }, [todos]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchTodos();
+    return () => {
+      setTodos([]);
+    };
+  }, []);
   if (!todos) return null;
 
   return (

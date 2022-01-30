@@ -1,6 +1,5 @@
-import React, { ChangeEvent, MouseEventHandler } from "react";
+import React, { ChangeEvent } from "react";
 import axios from "axios";
-import Todo from "./Todo";
 
 const baseURL = "http://localhost:8080/todos";
 
