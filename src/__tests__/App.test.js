@@ -8,10 +8,6 @@ jest.mock("axios");
 
 describe("Componenets should render without crashing", () => {
   it("renders without crashing", async () => {
-    const todos = [
-      { id: 1, text: "test" },
-      { id: 2, text: "test2" },
-    ];
     axios.get.mockImplementation(() =>
       Promise.resolve({
         data: [],

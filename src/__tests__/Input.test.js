@@ -1,16 +1,7 @@
 import Input from "../components/Input";
-import App from "../App";
 import React from "react";
 import axios from "axios";
-import {
-  render,
-  screen,
-  fireEvent,
-  cleanup,
-  getByRole,
-  getByText,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
